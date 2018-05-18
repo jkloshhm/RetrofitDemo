@@ -1,23 +1,36 @@
 package com.example.recipedemo;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.HTTP;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
+
+/**
+ * @author jkloshhm  2018-05-18  请求接口类
+ */
 
 public interface RecipeApiService {
 
-    /**  recipedemo
-     key:25d5a30486298  http://apicloud.mob.com/v1/cook/category/query
-     接口地址：http://apicloud.mob.com/v1/cook/category/query
-     支持格式：JSON
-     请求方式：GET
-     请求示例：http://apicloud.mob.com/v1/cook/category/query?key=appkey
+    /**
+     * recipedemo  key:25d5a30486298
+     * 菜谱分类标签查询：查询菜谱的所有分类。
+     * 接口地址：http://apicloud.mob.com/v1/cook/category/query
+     * 支持格式：JSON
+     * 请求方式：GET
+     * 请求示例：http://apicloud.mob.com/v1/cook/category/query?key=appkey
      */
 
     @GET("query")
-    Call<CookCategoryBean> getCategoryData(@Query("key") String key);
+    Call<ResponseBody> getCategoryData(@Query("key") String key);
+
+
+    /**
+     * 菜谱查询接口：根据菜谱ID查询菜谱详情。
+     * 接口地址：http://apicloud.mob.com/v1/cook/menu/query
+     * 支持格式：JSON
+     * 请求方式：GET
+     * 请求示例：http://apicloud.mob.com/v1/cook/menu/query?key=appkey&id=00100010070000000001
+     */
 
     @GET("query")
     Call<CookMenuByIdBean> getGetMenuFromId(@Query("key") String key, @Query("id") String id);

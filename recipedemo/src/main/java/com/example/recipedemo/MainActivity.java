@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.Random;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,20 +33,24 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         RecipeApiService recipeApiService = retrofit.create(RecipeApiService.class);
         //25d5a30486298 是在Mob申请的APP key
-        Call<CookCategoryBean> gankFuliDataResponse = recipeApiService.getCategoryData("25d5a30486298");
-        gankFuliDataResponse.enqueue(new Callback<CookCategoryBean>() {
+        Call<ResponseBody> gankFuliDataResponse = recipeApiService.getCategoryData("25d5a30486298");
+        gankFuliDataResponse.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse( Call<CookCategoryBean> call,
-                                    final Response<CookCategoryBean> response) {
-
-                String resultsBeanString = response.body().getResult().getCategoryInfo().getName();
-                TextView t = findViewById(R.id.cook_body);
-                t.setText(resultsBeanString);
-                Toast.makeText(MainActivity.this, "加载成功~", Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<ResponseBody> call,
+                                   final Response<ResponseBody> response) {
+                try {
+                    //String resultsBeanString = response.body().getResult().getCategoryInfo().getName();
+                    String resultsBeanString = new String(response.body().bytes());
+                    TextView t = findViewById(R.id.cook_body);
+                    t.setText(resultsBeanString);
+                    Toast.makeText(MainActivity.this, "加载成功~", Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
 
             @Override
-            public void onFailure(Call<CookCategoryBean> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "加载失败~", Toast.LENGTH_SHORT).show();
             }
         });
@@ -57,11 +62,11 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         RecipeApiService recipeApiService1 = retrofit1.create(RecipeApiService.class);
         //25d5a30486298 是在Mob申请的APP key
-        Call<CookMenuByIdBean> gankFuliDataResponse1 = recipeApiService1.getGetMenuFromId("25d5a30486298","00100010070000000001");
+        Call<CookMenuByIdBean> gankFuliDataResponse1 = recipeApiService1.getGetMenuFromId("25d5a30486298", "00100010070000000001");
         gankFuliDataResponse1.enqueue(new Callback<CookMenuByIdBean>() {
             @Override
-            public void onResponse( Call<CookMenuByIdBean> call,
-                                    final Response<CookMenuByIdBean> response) {
+            public void onResponse(Call<CookMenuByIdBean> call,
+                                   final Response<CookMenuByIdBean> response) {
 
                 String resultsBeanString1 = response.body().getResult().getRecipe().getImg();
                 ImageView t = findViewById(R.id.cook_body_by_id);
