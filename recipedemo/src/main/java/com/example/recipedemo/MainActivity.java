@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,32 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "加载失败~", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+        Retrofit retrofit1 = new Retrofit.Builder()
+                .baseUrl("http://apicloud.mob.com/v1/cook/menu/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RecipeApiService recipeApiService1 = retrofit1.create(RecipeApiService.class);
+        //25d5a30486298 是在Mob申请的APP key
+        Call<CookMenuByIdBean> gankFuliDataResponse1 = recipeApiService1.getGetMenuFromId("25d5a30486298","00100010070000000001");
+        gankFuliDataResponse1.enqueue(new Callback<CookMenuByIdBean>() {
+            @Override
+            public void onResponse( Call<CookMenuByIdBean> call,
+                                    final Response<CookMenuByIdBean> response) {
+
+                String resultsBeanString1 = response.body().getResult().getRecipe().getImg();
+                ImageView t = findViewById(R.id.cook_body_by_id);
+                Glide.with(MainActivity.this).load(resultsBeanString1).into(t);
+                Toast.makeText(MainActivity.this, "加载成功1~", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<CookMenuByIdBean> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "加载失败1~", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
     }
 }

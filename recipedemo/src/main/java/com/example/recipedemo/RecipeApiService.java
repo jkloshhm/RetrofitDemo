@@ -19,4 +19,7 @@ public interface RecipeApiService {
     @GET("query")
     Call<CookCategoryBean> getCategoryData(@Query("key") String key);
 
+    @GET("query")
+    Call<CookMenuByIdBean> getGetMenuFromId(@Query("key") String key, @Query("id") String id);
+
 }
