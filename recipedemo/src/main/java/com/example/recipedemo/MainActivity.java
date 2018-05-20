@@ -1,17 +1,12 @@
 package com.example.recipedemo;
 
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-
-import java.util.Random;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -61,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RecipeApiService recipeApiService1 = retrofit1.create(RecipeApiService.class);
+
         //25d5a30486298 是在Mob申请的APP key
         Call<CookMenuByIdBean> gankFuliDataResponse1 = recipeApiService1.getGetMenuFromId("25d5a30486298", "00100010070000000001");
         gankFuliDataResponse1.enqueue(new Callback<CookMenuByIdBean>() {
@@ -71,12 +67,12 @@ public class MainActivity extends AppCompatActivity {
                 String resultsBeanString1 = response.body().getResult().getRecipe().getImg();
                 ImageView t = findViewById(R.id.cook_body_by_id);
                 Glide.with(MainActivity.this).load(resultsBeanString1).into(t);
-                Toast.makeText(MainActivity.this, "加载成功1~", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "加载图片成功~", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<CookMenuByIdBean> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "加载失败1~", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "加载图片失败~", Toast.LENGTH_SHORT).show();
             }
         });
 
