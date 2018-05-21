@@ -14,10 +14,10 @@ public interface RecipeApiService {
     /**
      * recipedemo  key:25d5a30486298
      * 菜谱分类标签查询：查询菜谱的所有分类。
-     * 接口地址：http://apicloud.mob.com/v1/cook/category/query
-     * 支持格式：JSON
-     * 请求方式：GET
      * 请求示例：http://apicloud.mob.com/v1/cook/category/query?key=appkey
+     *
+     * @param key appkey
+     * @return ResponseBody
      */
 
     @GET("query")
@@ -26,10 +26,11 @@ public interface RecipeApiService {
 
     /**
      * 菜谱查询接口：根据菜谱ID查询菜谱详情。
-     * 接口地址：http://apicloud.mob.com/v1/cook/menu/query
-     * 支持格式：JSON
-     * 请求方式：GET
      * 请求示例：http://apicloud.mob.com/v1/cook/menu/query?key=appkey&id=00100010070000000001
+     *
+     * @param key appkey
+     * @param id  菜谱id
+     * @return CookMenuByIdBean
      */
 
     @GET("query")
