@@ -7,12 +7,13 @@ import retrofit2.http.Query;
 
 /**
  * @author jkloshhm  2018-05-18  请求接口类
+ * <p>
+ * recipedemo在Mob平台申请的 appkey：25d5a30486298
  */
 
 public interface RecipeApiService {
 
     /**
-     * recipedemo  key:25d5a30486298
      * 菜谱分类标签查询：查询菜谱的所有分类。
      * 请求示例：http://apicloud.mob.com/v1/cook/category/query?key=appkey
      *
