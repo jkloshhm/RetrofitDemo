@@ -13,11 +13,12 @@ public interface GankApiService {
 
     /**
      * 根据category获取Android、iOS等干货数据
+     * 接口请求示例：http://gank.io/api/data/{category}/{count}/{page}
      *
      * @param category 类别
      * @param count    条目数目
      * @param page     页数
-     * @return  Call<GankFuliDataResponse>
+     * @return GankFuliDataResponse
      */
     @GET("data/{category}/{count}/{page}")
     Call<GankFuliDataResponse> getCategoryData(@Path("category") String category, @Path("count") int count, @Path("page") int page);
