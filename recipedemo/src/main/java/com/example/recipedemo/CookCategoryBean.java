@@ -2,6 +2,11 @@ package com.example.recipedemo;
 
 import java.util.List;
 
+/**
+ * 分类bean
+ *
+ * @author jkloshhm  2018-05-18
+ */
 public class CookCategoryBean {
 
     @Override

@@ -15,6 +15,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
+/**
+ * 主activity
+ *
+ * @author jkloshhm  2018-05-18
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -34,12 +40,13 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call,
                                    final Response<ResponseBody> response) {
                 try {
+
                     //String resultsBeanString = response.body().getResult().getCategoryInfo().getName();
                     String resultsBeanString = new String(response.body().bytes());
                     TextView t = findViewById(R.id.cook_body);
                     t.setText(resultsBeanString);
                     Toast.makeText(MainActivity.this, "加载成功~", Toast.LENGTH_SHORT).show();
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
