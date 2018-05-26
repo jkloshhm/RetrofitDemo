@@ -6,11 +6,11 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 /**
- * 请求接口类：在Mob平台申请的 appkey：25d5a30486298
+ * 请求接口：在Mob平台申请的 appkey：25d5a30486298
  *
  * @author jkloshhm  2018-05-18
  */
-public interface RecipeApiService {
+public interface ApiRecipe {
 
     /**
      * 菜谱分类标签查询：查询菜谱的所有分类。

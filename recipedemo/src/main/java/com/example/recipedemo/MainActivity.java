@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
                 .baseUrl("http://apicloud.mob.com/v1/cook/category/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        RecipeApiService recipeApiService = retrofit.create(RecipeApiService.class);
+        ApiRecipe apiRecipe = retrofit.create(ApiRecipe.class);
         //25d5a30486298 是在Mob申请的APP key
-        Call<ResponseBody> gankFuliDataResponse = recipeApiService.getCategoryData("25d5a30486298");
+        Call<ResponseBody> gankFuliDataResponse = apiRecipe.getCategoryData("25d5a30486298");
         gankFuliDataResponse.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call,
@@ -62,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
                 .baseUrl("http://apicloud.mob.com/v1/cook/menu/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        RecipeApiService recipeApiService1 = retrofit1.create(RecipeApiService.class);
+        ApiRecipe apiRecipe1 = retrofit1.create(ApiRecipe.class);
 
         //25d5a30486298 是在Mob申请的APP key
-        Call<CookMenuByIdBean> gankFuliDataResponse1 = recipeApiService1.getGetMenuFromId("25d5a30486298", "00100010070000000001");
+        Call<CookMenuByIdBean> gankFuliDataResponse1 = apiRecipe1.getGetMenuFromId("25d5a30486298", "00100010070000000001");
         gankFuliDataResponse1.enqueue(new Callback<CookMenuByIdBean>() {
             @Override
             public void onResponse(Call<CookMenuByIdBean> call,
