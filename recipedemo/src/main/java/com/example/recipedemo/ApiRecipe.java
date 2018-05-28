@@ -7,12 +7,11 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
- * @author jkloshhm  2018-05-18  请求接口类
- * <p>
- * recipedemo在Mob平台申请的 appkey：25d5a30486298
+ * 请求接口：在Mob平台申请的 appkey：25d5a30486298
+ *
+ * @author jkloshhm  2018-05-18
  */
-
-public interface RecipeApiService {
+public interface ApiRecipe {
 
     /**
      * 菜谱分类标签查询：查询菜谱的所有分类。
@@ -21,7 +20,6 @@ public interface RecipeApiService {
      * @param key appkey
      * @return ResponseBody
      */
-
     @GET("query")
     Call<ResponseBody> getCategoryData(@Query("key") String key);
 
@@ -34,7 +32,6 @@ public interface RecipeApiService {
      * @param id  菜谱id
      * @return CookMenuByIdBean
      */
-
     @GET("query")
     Call<CookMenuByIdBean> getGetMenuFromId(@Query("key") String key, @Query("id") String id);
 
