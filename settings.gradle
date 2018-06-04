@@ -1,1 +1,1 @@
-include ':app', ':recipedemo'
+include ':app', ':recipedemo', ':retrofitrxjavaokhttpdemo'
