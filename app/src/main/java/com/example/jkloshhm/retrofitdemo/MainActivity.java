@@ -36,19 +36,17 @@ public class MainActivity extends AppCompatActivity {
 
         fabButton = findViewById(R.id.fab);
         imageView = findViewById(R.id.image);
-
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://gank.io/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+                                        .baseUrl("http://gank.io/api/")
+                                        .addConverterFactory(GsonConverterFactory.create())
+                                        .build();
         GankApiService gankApiService = retrofit.create(GankApiService.class);
-        //50代表有50条数据
+        //50代表请求50条数据
         Call<GankFuliDataResponse> gankFuliDataResponse = gankApiService.getCategoryData("福利", 50, 1);
         gankFuliDataResponse.enqueue(new Callback<GankFuliDataResponse>() {
             @Override
             public void onResponse(@Nullable Call<GankFuliDataResponse> call,
                                    @Nullable final Response<GankFuliDataResponse> response) {
-
                 resultsBeanList = response.body().getResults();
                 if (resultsBeanList != null) {
                     String imgageurl = resultsBeanList.get(0).getUrl();
@@ -61,9 +59,7 @@ public class MainActivity extends AppCompatActivity {
                             int i = random.nextInt(50);
                             Log.i("jkl", "随机数" + i);
                             String imgageurl = resultsBeanList.get(i).getUrl();
-                            Glide.with(MainActivity.this)
-                                    .load(imgageurl)
-                                    .into(imageView);
+                            Glide.with(MainActivity.this).load(imgageurl).into(imageView);
                         }
                     });
                 }
