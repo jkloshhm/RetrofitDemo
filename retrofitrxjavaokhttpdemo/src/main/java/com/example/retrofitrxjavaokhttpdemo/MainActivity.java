@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.text_view);
 
-        ApiServiceInterFace apiServiceInterFace = HttpUtils.createApiService();
-
         HttpUtils.request(
                 HttpUtils.createApiService().getGetMenuFromId("25d5a30486298", "00100010070000000001"),
                 new HttpUtils.IResponseListener<CookMenuByIdBean>() {

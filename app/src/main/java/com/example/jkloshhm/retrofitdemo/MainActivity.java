@@ -36,13 +36,21 @@ public class MainActivity extends AppCompatActivity {
 
         fabButton = findViewById(R.id.fab);
         imageView = findViewById(R.id.image);
+
+
+        //第一步:创建retrofit对象
         Retrofit retrofit = new Retrofit.Builder()
                                         .baseUrl("http://gank.io/api/")
                                         .addConverterFactory(GsonConverterFactory.create())
                                         .build();
+        //第二步:创建ApiService对象
         GankApiService gankApiService = retrofit.create(GankApiService.class);
-        //50代表请求50条数据
+
+        //第三步:创建call对象，即网络请求对象
         Call<GankFuliDataResponse> gankFuliDataResponse = gankApiService.getCategoryData("福利", 50, 1);
+
+        //第四步:用call对象的.enqueue()方法发送请求，得到数据onResponse()或者onFailure()
+        //gankFuliDataResponse.execute();
         gankFuliDataResponse.enqueue(new Callback<GankFuliDataResponse>() {
             @Override
             public void onResponse(@Nullable Call<GankFuliDataResponse> call,
@@ -70,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "获取图片失败", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
     }
 }
 
